@@ -1,0 +1,315 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: pdflatex: {shell: yes, synctex: no, interaction: batchmode}
+% arara: pdflatex: {shell: yes, synctex: no, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{Scrabble}
+\usepackage[upright]{fourier}
+\usepackage[scaled=0.875]{helvet}
+\renewcommand\ttdefault{lmtt}
+\usepackage[scaled=0.875]{cabin}
+\usepackage{amsmath,amssymb}
+\usepackage{fontawesome5}
+\usepackage{enumitem}
+\usepackage{tabularray}
+\usepackage{fancyvrb}
+\usepackage{fancyhdr}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\lfoot{\sffamily\small [Scrabble]}
+\cfoot{\sffamily\small - \thepage{} -}
+\rfoot{\hyperlink{matoc}{\small\faArrowAltCircleUp[regular]}}
+
+\usepackage{hvlogos}
+\usepackage{hyperref}
+\urlstyle{same}
+\hypersetup{pdfborder=0 0 0}
+\usepackage[margin=1.5cm]{geometry}
+\setlength{\parindent}{0pt}
+\definecolor{LightGray}{gray}{0.9}
+
+\def\TPversion{0.1.1}
+\def\TPdate{06/01/2023}
+
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{minted}
+\NewTCBListing{PresentationCode}{ O{blue} m }{%
+	sharp corners=downhill,enhanced,arc=12pt,skin=bicolor,%
+	colback=#1!1!white,colframe=#1!75!black,colbacklower=white,%
+	attach boxed title to top right={yshift=-\tcboxedtitleheight},title=Code \LaTeX,%
+	boxed title style={%
+		colframe=#1!75!black,colback=#1!15!white,%
+		,sharp corners=downhill,arc=12pt,%
+	},%
+	fonttitle=\color{#1!90!black}\itshape\ttfamily\footnotesize,%
+	listing engine=minted,minted style=colorful,
+	minted language=tex,minted options={tabsize=4,fontsize=\footnotesize,autogobble},
+	#2
+}
+
+\newcommand\Cle[1]{{\bfseries\sffamily\textlangle #1\textrangle}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\thispagestyle{empty}
+
+\vspace{2cm}
+
+\begin{center}
+	\begin{minipage}{0.75\linewidth}
+	\begin{tcolorbox}[colframe=yellow,colback=yellow!15]
+		\begin{center}
+			\begin{tabular}{c}
+				{\Huge \texttt{Scrabble [en]}}\\
+				\\
+				{\LARGE A bord of Scrabble,} \\
+				\\
+				{\LARGE with words or not.} \\
+				\\
+				{Scrabble\texttrademark{}, from Hasbro\texttrademark{} and Mattel\texttrademark{}.}
+			\end{tabular}
+			
+			\medskip
+			
+			{\small \texttt{Version \TPversion{} -- \TPdate}}
+		\end{center}
+	\end{tcolorbox}
+\end{minipage}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{center}
+	\begin{tabular}{c}
+	\texttt{Cédric Pierquet}\\
+	{\ttfamily c pierquet -- at -- outlook . fr}\\
+	\texttt{\url{https://github.com/cpierquet/Scrabble}}
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+
+{$\blacktriangleright$~~Some commands to display a Scrabble board, with or without words.}
+
+\smallskip
+
+{$\blacktriangleright$~~English, French, German or Spanish version for points and labels.}
+
+\smallskip
+
+{$\blacktriangleright$~~Idas from \url{https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders}}
+
+\vspace{0.5cm}
+
+\begin{center}
+	\ScrabbleBoard[Scale=0.5]
+	~~~~
+	\begin{EnvScrabble}[Scale=0.5]
+		\ScrabblePutWord{T,I,K,Z}{1,13}
+		\ScrabblePutWord[V]{P,S,T,R,I,C,K,S}{1,15}
+		\ScrabblePutWord[V]{K,A,T,E,X}{3,13}
+		\ScrabblePutWord{C,L,E,V,E,R,E,F}{1,10}
+		\ScrabblePutWord[V]{M,E,T,A,P,O,S,T}{7,11}
+		\ScrabblePutWord{L,U,A,L,A,T,E,X}{5,8}
+		\ScrabblePutWord[V]{P,R,O,F,L,Y,*,E,E}{11,15}
+		\ScrabblePutWord{P,R,O,F,C,O,L,L,E,*,E}{1,1}
+		\ScrabblePutWord{S,Y,N,T,A,X,E}{7,5}
+		\ScrabblePutWord[V]{S,T,R,I,N,*}{10,6}
+	\end{EnvScrabble}
+\end{center}
+
+\vspace{0.5cm}
+
+\hfill{}\textit{Thanks to french members of group \faFacebook{} " Coin \LaTeX{} " for help an aideas !}
+
+\vfill
+
+\hrule
+
+\medskip
+
+\begin{tblr}{width=\linewidth,colspec={X[c]X[c]X[c]X[c]X[c]X[c]},cells={font=\sffamily}}
+{\huge \LaTeX} & & & & &\\
+& {\huge \pdfLaTeX} & & & & \\
+& & {\huge \LuaLaTeX} & & & \\
+& & & {\huge \TikZ} & & \\
+& & & & {\huge \TeXLive} & \\
+& & & & & {\huge \MiKTeX} \\
+\end{tblr}
+
+\medskip
+
+\hrule
+
+\medskip
+
+\newpage
+
+\part*{History}
+
+\verb|v0.1.1|~:~~~~Option \textsf{[fr]} pour french commands
+
+\verb|v0.1  |~:~~~~Initial version
+
+\part*{Introduction}
+
+\section{The Scrabble package}
+
+\subsection{Source}
+
+Some ideas are from \url{https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders}, with propostion from Mark Wibrow.
+
+\smallskip
+
+This package is \textit{build} within styles and ideas from Mark Wibrow.
+
+\subsection{Loading of the package, used packages}
+
+The package \textsf{Scrabble} loads within the preamble :
+
+\begin{PresentationCode}{listing only}
+\usepackage{Scrabble}
+\end{PresentationCode}
+
+It's mostly compatible with \textsf{latex}, \textsf{pdflatex}, \textsf{lualatex} or \textsf{xelatex} compilation !
+
+\medskip
+
+It loads the following packages and libraries :
+
+\begin{itemize}
+	\item \texttt{tikz} with \Cle{calc} with the tikzlibraries \Cle{calc} and \Cle{shapes.geometric} ;
+	\item \texttt{pgf} and \texttt{pgffor} ;
+	\item \texttt{xstring} ;
+	\item \texttt{xparse} ;
+	\item \texttt{simplekv}.
+\end{itemize}
+
+\subsection{The package itself}
+
+The idea is to, thanks to \TikZ, propose commands or environments to display a Scrabble\texttrademark{} board :
+
+\begin{itemize}
+	\item \textit{independant} ;
+	\item in an \textit{environement} with words.
+\end{itemize}
+
+\begin{PresentationCode}{listing only}
+%independant command for the empty board
+\ScrabbleBoard<language>[keys]
+
+%environmentt with word(s)
+\begin{EnvScrabble}<language>[keys]
+	\ScrabblePutWord[orientation]{l,e,t,t,e,r,s}{coordinates of the beginning cell}
+\end{EnvScrabble}
+\end{PresentationCode}
+
+\subsection{Languages}
+
+The \textsf{commands}, \textsf{environments} et \textsf{keys} are in english, but cells can be displayed in :
+
+\begin{itemize}
+	\item english ;
+	\item french ;
+	\item german ;
+	\item spanish.
+\end{itemize}
+
+\pagebreak
+
+\section{Commands, keys and options}
+
+\subsection{The board, standalone}
+
+The first argument, \textit{optional}, between \texttt{<...>} is the \Cle{langage} of the display, form the list :
+
+\hfill\Cle{EN} (english, default), \Cle{FR} (french), \Cle{GE} (german) et \Cle{SP} (spanish).\hfill~
+
+\smallskip
+
+The second argument, \textit{optional}, between \texttt{[...]} give the \Cle{keys} :
+
+\begin{itemize}
+	\item \Cle{Scale} for the display (the initial unit is 1~cm) ; \hfill~default : \Cle{1}
+	\item the boolean \Cle{Border} pour print a border outside the board ; \hfill~default : \Cle{true}
+	\item the boolean \Cle{Labels} to print \textit{names} of the special cells ;\hfill~defalut : \Cle{true}
+	\item the boolean \Cle{Help} pour print numbers to reperate th cells ;\hfill~default : \Cle{false}
+\end{itemize}
+
+\begin{PresentationCode}{}
+%board without cell's names
+\ScrabbleBoard[Labels=false,Scale=0.55]\\
+%board in spanisch
+\ScrabbleBoard<SP>[Scale=0.55,Cadre=false]
+\end{PresentationCode}
+
+\newpage
+
+\subsection{The board with words}
+
+Here we can use the \textsf{environement} with the specific \textsf{command} in order to print words on the board.
+
+\smallskip
+
+For the \textit{environment}, the options are the same as for the independant \textsf{command} !
+
+\smallskip
+
+For putting word on the board :
+
+\begin{itemize}
+	\item the first argument, \textit{optional}, between \texttt{[...]} is the orientation of the word, \Cle{H} (by default) or \Cle{V} ;
+	\item the second argument, \textit{mandatory}, between \texttt{\{...\}}, is the list of the letters, separate by " \texttt{,} " ;
+	\item the last argument, \textit{mandatory}, between \texttt{\{...\}}, is the coordinates of the first cell for fisrt lettre (the cell (1;\,1) is south-west corner).
+\end{itemize}
+
+\textbf{Observation 1 :} the chosen language will display the right points in the til !
+
+\smallskip
+
+\textbf{Observation 2 :} the \textit{white} (or \textit{joker}) is coded by the character \texttt{*}.
+
+\begin{PresentationCode}{}
+\begin{EnvScrabble}[Scale=0.75,Labels=false,Help]
+	\ScrabblePutWord{T,I,K,Z}{1,13}
+	\ScrabblePutWord[V]{P,S,T,R,I,C,K,S}{1,15}
+	\ScrabblePutWord[V]{K,A,T,E,X}{3,13}
+	\ScrabblePutWord{C,L,E,V,E,R,E,F}{1,10}
+	\ScrabblePutWord[V]{M,E,T,A,P,O,S,T}{7,11}
+	\ScrabblePutWord{L,U,A,L,A,T,E,X}{5,8}
+	\ScrabblePutWord[V]{P,R,O,F,L,Y,*,E,E}{11,15}
+	\ScrabblePutWord{P,R,O,F,C,O,L,L,E,*,E}{1,1}
+	\ScrabblePutWord{S,Y,N,T,A,X,E}{7,5}
+	\ScrabblePutWord[V]{S,T,R,I,N,*}{10,6}
+\end{EnvScrabble}
+\end{PresentationCode}
+
+\begin{PresentationCode}{}
+\begin{EnvScrabble}<EN>[Scale=0.55]
+	\ScrabblePutWord{T,I,K,Z}{1,13}
+	\ScrabblePutWord[V]{P,S,T,R,I,C,K,S}{1,15}
+	\draw (7,15) node[font=\LARGE\sffamily] {English version} ;
+\end{EnvScrabble}~~~
+\begin{EnvScrabble}<FR>[Scale=0.55]
+	\ScrabblePutWord{T,I,K,Z}{1,13}
+	\ScrabblePutWord[V]{P,S,T,R,I,C,K,S}{1,15}
+	\draw (7,15) node[font=\LARGE\sffamily] {French version} ;
+\end{EnvScrabble}\\
+\begin{EnvScrabble}<GE>[Scale=0.55]
+	\ScrabblePutWord{T,I,K,Z}{1,13}
+	\ScrabblePutWord[V]{P,S,T,R,I,C,K,S}{1,15}
+	\draw (7,15) node[font=\LARGE\sffamily] {German version} ;
+\end{EnvScrabble}~~~
+\begin{EnvScrabble}<SP>[Scale=0.55]
+	\ScrabblePutWord{L,A,T,E,X}{1,14}
+	\ScrabblePutWord[V]{M,A,D,R,I,D}{2,15}
+	\draw (7,15) node[font=\LARGE\sffamily] {Spanish vesion} ;
+\end{EnvScrabble}
+\end{PresentationCode}
+
+\end{document}

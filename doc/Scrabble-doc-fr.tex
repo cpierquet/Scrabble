@@ -6,7 +6,7 @@
 \usepackage[french]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{Scrabble}
+\usepackage[fr]{Scrabble}
 \usepackage[upright]{fourier}
 \usepackage[scaled=0.875]{helvet}
 \renewcommand\ttdefault{lmtt}
@@ -31,7 +31,7 @@
 \setlength{\parindent}{0pt}
 \definecolor{LightGray}{gray}{0.9}
 
-\def\TPversion{0.1}
+\def\TPversion{0.1.1}
 \def\TPdate{6 Janvier 2023}
 
 \usepackage[most]{tcolorbox}
@@ -65,7 +65,7 @@
 	\begin{tcolorbox}[colframe=yellow,colback=yellow!15]
 		\begin{center}
 			\begin{tabular}{c}
-				{\Huge \lstinline!Scrabble!}\\
+				{\Huge \texttt{Scrabble [fr]}}\\
 				\\
 				{\LARGE Un plateau de Scrabble,} \\
 				\\
@@ -152,7 +152,9 @@
 
 \part*{Historique}
 
-\verb|v0.1   |~:~~~~Version initiale
+\verb|v0.1.1|~:~~~~Option \textsf{[fr]} pour franciser les commandes
+
+\verb|v0.1  |~:~~~~Version initiale
 
 \part*{Introduction}
 
@@ -171,7 +173,7 @@ Le package a ensuite été \textit{construit} et \textit{modestement enrichi} au
 Le package \textsf{Scrabble} se charge dans le préambule via la commande :
 
 \begin{PresentationCode}{listing only}
-\usepackage{Scrabble}
+\usepackage[fr]{Scrabble}
 \end{PresentationCode}
 
 Il est compatible avec les compilations usuelles en \textsf{latex}, \textsf{pdflatex}, \textsf{lualatex} ou \textsf{xelatex}.
