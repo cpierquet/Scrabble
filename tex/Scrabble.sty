@@ -4,7 +4,8 @@
 % Inspiration                    : Mark Wibrow in https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{Scrabble}[2023/01/06 v0.1.1 Scrabble]
+\ProvidesPackage{Scrabble}[2023/01/07 v0.1.2 Scrabble]
+% 0.1.2		Clé <EchelleLabels> pour les labels des cases
 % 0.1.1		Option [fr] pour franciser les commandes
 % 0.1		Version initiale
 
@@ -73,7 +74,7 @@
 %idées de https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders
 \tikzset{
 	scorelettre/.style={
-		font=\sffamily\bfseries\tiny,align=center,scale=0.95,draw=none,fill=none
+		font=\sffamily\bfseries\tiny,align=center,scale=\fpeval{\PLSCRBBLEechelleLabel*0.8},draw=none,fill=none
 	},
 	pics/.cd,
 	pointes/.style args={#1#2#3}{
@@ -144,10 +145,12 @@
 
 %clés
 \defKV[PLSCRABBLETIKZ]{%
-	Echelle=\xdef\PLSCRBBLEechelle{#1}
+	Echelle=\xdef\PLSCRBBLEechelle{#1},%
+	EchelleLabels=\xdef\PLSCRBBLEechelleLabel{#1}
 }
 \setKVdefault[PLSCRABBLETIKZ]{%
 	Echelle=1,%
+	EchelleLabels=1,%
 	Cadre=true,%
 	Labels=true,%
 	Aide=false
@@ -253,7 +256,7 @@
 %idées de https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders
 \tikzset{
 	scorelettre/.style={
-		font=\sffamily\bfseries\tiny,align=center,scale=0.95,draw=none,fill=none
+		font=\sffamily\bfseries\tiny,align=center,scale=\fpeval{\PLSCRBBLEechelleLabel*0.8},draw=none,fill=none
 	},
 	pics/.cd,
 	pointes/.style args={#1#2#3}{
@@ -324,10 +327,12 @@
 
 %clés
 \defKV[PLSCRABBLETIKZ]{%
-	Scale=\xdef\PLSCRBBLEechelle{#1}
+	Scale=\xdef\PLSCRBBLEechelle{#1},%
+	ScaleLabels=\xdef\PLSCRBBLEechelleLabel{#1}
 }
 \setKVdefault[PLSCRABBLETIKZ]{%
 	Scale=1,%
+	ScaleLabels=1,%
 	Border=true,%
 	Labels=true,%
 	Help=false

@@ -7,10 +7,10 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[fr]{Scrabble}
-\usepackage[upright]{fourier}
-\usepackage[scaled=0.875]{helvet}
-\renewcommand\ttdefault{lmtt}
-\usepackage[scaled=0.875]{cabin}
+%\usepackage[upright]{fourier}
+%\usepackage[scaled=0.875]{helvet}
+%\renewcommand\ttdefault{lmtt}
+%\usepackage[scaled=0.875]{cabin}
 \usepackage{amsmath,amssymb}
 \usepackage{fontawesome5}
 \usepackage{enumitem}
@@ -31,8 +31,8 @@
 \setlength{\parindent}{0pt}
 \definecolor{LightGray}{gray}{0.9}
 
-\def\TPversion{0.1.1}
-\def\TPdate{6 Janvier 2023}
+\def\TPversion{0.1.2}
+\def\TPdate{7 Janvier 2023}
 
 \usepackage[most]{tcolorbox}
 \tcbuselibrary{minted}
@@ -152,6 +152,8 @@
 
 \part*{Historique}
 
+\verb|v0.1.2|~:~~~~Clé \textsf{<EchelleLabels>} pour modifier l'échelle des noms des cases
+
 \verb|v0.1.1|~:~~~~Option \textsf{[fr]} pour franciser les commandes
 
 \verb|v0.1  |~:~~~~Version initiale
@@ -185,14 +187,12 @@ Il charge les packages et librairies suivantes :
 \begin{itemize}
 	\item \texttt{tikz} avec les librairies \Cle{calc} et \Cle{shapes.geometric} ;
 	\item \texttt{pgf} et \texttt{pgffor} ;
-	\item \texttt{xstring} ;
-	\item \texttt{xparse} ;
-	\item \texttt{simplekv}.
+	\item \texttt{xstring}, \texttt{xparse} et \texttt{simplekv}.
 \end{itemize}
 
 \subsection{\og Philosophie \fg{} du package}
 
-L'idée est de proposer, grâce à des commandes en \TikZ, des commandes ou environnements pour présenter un plateau de Scrabble\texttrademark{} :
+L'idée est de proposer, grâce à des commandes en \TikZ, des \textsf{commandes} ou \textsf{environnements} pour présenter un plateau de Scrabble\texttrademark{} :
 
 \begin{itemize}
 	\item \textit{autonome} ;
@@ -236,16 +236,15 @@ Le second argument, \textit{optionnel}, entre \texttt{[...]} propose les \Cle{cl
 
 \begin{itemize}
 	\item \Cle{Echelle} pour spécifier l'échelle d'affichage (l'unité de base étant 1~cm) ; \hfill~défaut : \Cle{1}
+	\item \Cle{Echellelabels} pour spécifier l'échelle d'affichage des labels ; \hfill~défaut : \Cle{1}
 	\item le booléen \Cle{Cadre} pour afficher un cadre autour du plateau ; \hfill~défaut : \Cle{true}
 	\item le booléen \Cle{Labels} pour afficher le \textit{nom} des cases ;\hfill~défaut : \Cle{true}
 	\item le booléen \Cle{Aide} pour afficher une aide pour repérer les cases ;\hfill~défaut : \Cle{false}
 \end{itemize}
 
 \begin{PresentationCode}{}
-%plateau sans le nom des cases
-\PlateauScrabble[Labels=false,Echelle=0.55]\\
-%plateau en anglais
-\PlateauScrabble<EN>[Echelle=0.55,Cadre=false]
+\PlateauScrabble[Labels=false,Echelle=0.55]\\     %plateau sans le nom des cases
+\PlateauScrabble<EN>[Echelle=0.55,Cadre=false]    %plateau en anglais
 \end{PresentationCode}
 
 \newpage

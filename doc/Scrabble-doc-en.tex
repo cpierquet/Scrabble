@@ -7,10 +7,10 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{Scrabble}
-\usepackage[upright]{fourier}
-\usepackage[scaled=0.875]{helvet}
-\renewcommand\ttdefault{lmtt}
-\usepackage[scaled=0.875]{cabin}
+%\usepackage[upright]{fourier}
+%\usepackage[scaled=0.875]{helvet}
+%\renewcommand\ttdefault{lmtt}
+%\usepackage[scaled=0.875]{cabin}
 \usepackage{amsmath,amssymb}
 \usepackage{fontawesome5}
 \usepackage{enumitem}
@@ -31,8 +31,8 @@
 \setlength{\parindent}{0pt}
 \definecolor{LightGray}{gray}{0.9}
 
-\def\TPversion{0.1.1}
-\def\TPdate{06/01/2023}
+\def\TPversion{0.1.2}
+\def\TPdate{07/01/2023}
 
 \usepackage[most]{tcolorbox}
 \tcbuselibrary{minted}
@@ -67,7 +67,7 @@
 			\begin{tabular}{c}
 				{\Huge \texttt{Scrabble [en]}}\\
 				\\
-				{\LARGE A bord of Scrabble,} \\
+				{\LARGE A board of Scrabble,} \\
 				\\
 				{\LARGE with words or not.} \\
 				\\
@@ -102,7 +102,7 @@
 
 \smallskip
 
-{$\blacktriangleright$~~Idas from \url{https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders}}
+{$\blacktriangleright$~~Ideas from \url{https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders}}
 
 \vspace{0.5cm}
 
@@ -152,7 +152,9 @@
 
 \part*{History}
 
-\verb|v0.1.1|~:~~~~Option \textsf{[fr]} pour french commands
+\verb|v0.1.2|~:~~~~Key \textsf{<ScaleLabels>} to modify scale of the cell's names
+
+\verb|v0.1.1|~:~~~~Option \textsf{[fr]} for french commands
 
 \verb|v0.1  |~:~~~~Initial version
 
@@ -185,9 +187,7 @@ It loads the following packages and libraries :
 \begin{itemize}
 	\item \texttt{tikz} with \Cle{calc} with the tikzlibraries \Cle{calc} and \Cle{shapes.geometric} ;
 	\item \texttt{pgf} and \texttt{pgffor} ;
-	\item \texttt{xstring} ;
-	\item \texttt{xparse} ;
-	\item \texttt{simplekv}.
+	\item \texttt{xstring}, \texttt{xparse} and \texttt{simplekv}.
 \end{itemize}
 
 \subsection{The package itself}
@@ -236,16 +236,15 @@ The second argument, \textit{optional}, between \texttt{[...]} give the \Cle{key
 
 \begin{itemize}
 	\item \Cle{Scale} for the display (the initial unit is 1~cm) ; \hfill~default : \Cle{1}
+	\item \Cle{ScaleLabels} for the cell's names ; \hfill~défaut : \Cle{1}
 	\item the boolean \Cle{Border} pour print a border outside the board ; \hfill~default : \Cle{true}
 	\item the boolean \Cle{Labels} to print \textit{names} of the special cells ;\hfill~defalut : \Cle{true}
 	\item the boolean \Cle{Help} pour print numbers to reperate th cells ;\hfill~default : \Cle{false}
 \end{itemize}
 
 \begin{PresentationCode}{}
-%board without cell's names
-\ScrabbleBoard[Labels=false,Scale=0.55]\\
-%board in spanisch
-\ScrabbleBoard<SP>[Scale=0.55,Cadre=false]
+\ScrabbleBoard[Labels=false,Scale=0.55]\\      %board without cell's names
+\ScrabbleBoard<SP>[Scale=0.55,Cadre=false]     %board in spanisch
 \end{PresentationCode}
 
 \newpage
