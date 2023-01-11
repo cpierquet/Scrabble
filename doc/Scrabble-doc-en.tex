@@ -31,8 +31,8 @@
 \setlength{\parindent}{0pt}
 \definecolor{LightGray}{gray}{0.9}
 
-\def\TPversion{0.1.2}
-\def\TPdate{07/01/2023}
+\def\TPversion{0.1.3}
+\def\TPdate{09/01/2023}
 
 \usepackage[most]{tcolorbox}
 \tcbuselibrary{minted}
@@ -110,22 +110,22 @@
 	\ScrabbleBoard[Scale=0.5]
 	~~~~
 	\begin{EnvScrabble}[Scale=0.5]
-		\ScrabblePutWord{T,I,K,Z}{1,13}
-		\ScrabblePutWord[V]{P,S,T,R,I,C,K,S}{1,15}
-		\ScrabblePutWord[V]{K,A,T,E,X}{3,13}
-		\ScrabblePutWord{C,L,E,V,E,R,E,F}{1,10}
-		\ScrabblePutWord[V]{M,E,T,A,P,O,S,T}{7,11}
-		\ScrabblePutWord{L,U,A,L,A,T,E,X}{5,8}
-		\ScrabblePutWord[V]{P,R,O,F,L,Y,*,E,E}{11,15}
-		\ScrabblePutWord{P,R,O,F,C,O,L,L,E,*,E}{1,1}
-		\ScrabblePutWord{S,Y,N,T,A,X,E}{7,5}
-		\ScrabblePutWord[V]{S,T,R,I,N,*}{10,6}
+		\ScrabblePutWord{TIKZ}{1,13}
+		\ScrabblePutWord[V]{pstricks}{1,15}
+		\ScrabblePutWord[V]{KaTeX}{3,13}
+		\ScrabblePutWord{cleveref}{1,10}
+		\ScrabblePutWord[V]{METAPOST}{7,11}
+		\ScrabblePutWord{LUALATEX}{5,8}
+		\ScrabblePutWord[V]{ProfLy*ee}{11,15}
+		\ScrabblePutWord{PROFCOLLE*E}{1,1}
+		\ScrabblePutWord{SYNTAX}{7,5}
+		\ScrabblePutWord[V]{STRIN*}{10,6}
 	\end{EnvScrabble}
 \end{center}
 
 \vspace{0.5cm}
 
-\hfill{}\textit{Thanks to french members of group \faFacebook{} " Coin \LaTeX{} " for help an aideas !}
+\hfill{}\textit{Thanks to Denis Bitouzé and Patrick Bideault for help and ideas !}
 
 \vfill
 
@@ -149,14 +149,6 @@
 \medskip
 
 \newpage
-
-\part*{History}
-
-\verb|v0.1.2|~:~~~~Key \textsf{<ScaleLabels>} to modify scale of the cell's names
-
-\verb|v0.1.1|~:~~~~Option \textsf{[fr]} for french commands
-
-\verb|v0.1  |~:~~~~Initial version
 
 \part*{Introduction}
 
@@ -187,7 +179,7 @@ It loads the following packages and libraries :
 \begin{itemize}
 	\item \texttt{tikz} with \Cle{calc} with the tikzlibraries \Cle{calc} and \Cle{shapes.geometric} ;
 	\item \texttt{pgf} and \texttt{pgffor} ;
-	\item \texttt{xstring}, \texttt{xparse} and \texttt{simplekv}.
+	\item \texttt{xstring}, \texttt{xparse}, \texttt{simplekv} and \texttt{listofitems}.
 \end{itemize}
 
 \subsection{The package itself}
@@ -195,17 +187,17 @@ It loads the following packages and libraries :
 The idea is to, thanks to \TikZ, propose commands or environments to display a Scrabble\texttrademark{} board :
 
 \begin{itemize}
-	\item \textit{independant} ;
-	\item in an \textit{environement} with words.
+	\item \textit{independent} ;
+	\item in an \textit{environment} with words.
 \end{itemize}
 
 \begin{PresentationCode}{listing only}
-%independant command for the empty board
+%independent command for the empty board
 \ScrabbleBoard<language>[keys]
 
-%environmentt with word(s)
+%environment with word(s)
 \begin{EnvScrabble}<language>[keys]
-	\ScrabblePutWord[orientation]{l,e,t,t,e,r,s}{coordinates of the beginning cell}
+	\ScrabblePutWord[orientation]{word}{coordinates of the beginning cell}
 \end{EnvScrabble}
 \end{PresentationCode}
 
@@ -214,10 +206,10 @@ The idea is to, thanks to \TikZ, propose commands or environments to display a S
 The \textsf{commands}, \textsf{environments} et \textsf{keys} are in english, but cells can be displayed in :
 
 \begin{itemize}
-	\item english ;
-	\item french ;
-	\item german ;
-	\item spanish.
+	\item english (code ISO 639-1 EN) ;
+	\item french (code ISO 639-1 FR) ;
+	\item german (code ISO 639-1 DE) ;
+	\item spanish (code ISO 639-1 ES).
 \end{itemize}
 
 \pagebreak
@@ -228,7 +220,7 @@ The \textsf{commands}, \textsf{environments} et \textsf{keys} are in english, bu
 
 The first argument, \textit{optional}, between \texttt{<...>} is the \Cle{langage} of the display, form the list :
 
-\hfill\Cle{EN} (english, default), \Cle{FR} (french), \Cle{GE} (german) et \Cle{SP} (spanish).\hfill~
+\hfill\Cle{EN} (english, default), \Cle{FR} (french), \Cle{DE} (german) et \Cle{ES} (spanish).\hfill~
 
 \smallskip
 
@@ -238,24 +230,24 @@ The second argument, \textit{optional}, between \texttt{[...]} give the \Cle{key
 	\item \Cle{Scale} for the display (the initial unit is 1~cm) ; \hfill~default : \Cle{1}
 	\item \Cle{ScaleLabels} for the cell's names ; \hfill~défaut : \Cle{1}
 	\item the boolean \Cle{Border} pour print a border outside the board ; \hfill~default : \Cle{true}
-	\item the boolean \Cle{Labels} to print \textit{names} of the special cells ;\hfill~defalut : \Cle{true}
+	\item the boolean \Cle{Labels} to print \textit{names} of the special cells ;\hfill~default : \Cle{true}
 	\item the boolean \Cle{Help} pour print numbers to reperate th cells ;\hfill~default : \Cle{false}
 \end{itemize}
 
 \begin{PresentationCode}{}
 \ScrabbleBoard[Labels=false,Scale=0.55]\\      %board without cell's names
-\ScrabbleBoard<SP>[Scale=0.55,Cadre=false]     %board in spanisch
+\ScrabbleBoard<ES>[Scale=0.55,Border=false]     %board in spanish, without border
 \end{PresentationCode}
 
 \newpage
 
 \subsection{The board with words}
 
-Here we can use the \textsf{environement} with the specific \textsf{command} in order to print words on the board.
+Here we can use the \textsf{environment} with the specific \textsf{command} in order to print words on the board.
 
 \smallskip
 
-For the \textit{environment}, the options are the same as for the independant \textsf{command} !
+For the \textit{environment}, the options are the same as for the independent \textsf{command} !
 
 \smallskip
 
@@ -263,7 +255,7 @@ For putting word on the board :
 
 \begin{itemize}
 	\item the first argument, \textit{optional}, between \texttt{[...]} is the orientation of the word, \Cle{H} (by default) or \Cle{V} ;
-	\item the second argument, \textit{mandatory}, between \texttt{\{...\}}, is the list of the letters, separate by " \texttt{,} " ;
+	\item the second argument, \textit{mandatory}, between \texttt{\{...\}}, is the word, with uppercase or lowercase letters ;
 	\item the last argument, \textit{mandatory}, between \texttt{\{...\}}, is the coordinates of the first cell for fisrt lettre (the cell (1;\,1) is south-west corner).
 \end{itemize}
 
@@ -275,40 +267,46 @@ For putting word on the board :
 
 \begin{PresentationCode}{}
 \begin{EnvScrabble}[Scale=0.75,Labels=false,Help]
-	\ScrabblePutWord{T,I,K,Z}{1,13}
-	\ScrabblePutWord[V]{P,S,T,R,I,C,K,S}{1,15}
-	\ScrabblePutWord[V]{K,A,T,E,X}{3,13}
-	\ScrabblePutWord{C,L,E,V,E,R,E,F}{1,10}
-	\ScrabblePutWord[V]{M,E,T,A,P,O,S,T}{7,11}
-	\ScrabblePutWord{L,U,A,L,A,T,E,X}{5,8}
-	\ScrabblePutWord[V]{P,R,O,F,L,Y,*,E,E}{11,15}
-	\ScrabblePutWord{P,R,O,F,C,O,L,L,E,*,E}{1,1}
-	\ScrabblePutWord{S,Y,N,T,A,X,E}{7,5}
-	\ScrabblePutWord[V]{S,T,R,I,N,*}{10,6}
+	\ScrabblePutWord{TIKZ}{1,13}
+	\ScrabblePutWord[V]{pstricks}{1,15}
+	\ScrabblePutWord[V]{KaTeX}{3,13}
+	\ScrabblePutWord{cleveref}{1,10}
+	\ScrabblePutWord[V]{METAPOST}{7,11}
+	\ScrabblePutWord{LUALATEX}{5,8}
+	\ScrabblePutWord[V]{ProfLy*ee}{11,15}
+	\ScrabblePutWord{PROFCOLLE*E}{1,1}
+	\ScrabblePutWord{SYNTAX}{7,5}
+	\ScrabblePutWord[V]{STRIN*}{10,6}
 \end{EnvScrabble}
 \end{PresentationCode}
 
 \begin{PresentationCode}{}
-\begin{EnvScrabble}<EN>[Scale=0.55]
-	\ScrabblePutWord{T,I,K,Z}{1,13}
-	\ScrabblePutWord[V]{P,S,T,R,I,C,K,S}{1,15}
+\begin{EnvScrabble}[Scale=0.55]
+	\ScrabblePutWord{tikz}{1,13} \ScrabblePutWord[V]{PSTRiCKS}{1,15}
 	\draw (7,15) node[font=\LARGE\sffamily] {English version} ;
 \end{EnvScrabble}~~~
 \begin{EnvScrabble}<FR>[Scale=0.55]
-	\ScrabblePutWord{T,I,K,Z}{1,13}
-	\ScrabblePutWord[V]{P,S,T,R,I,C,K,S}{1,15}
+	\ScrabblePutWord{tikz}{1,13} \ScrabblePutWord[V]{PSTRiCKS}{1,15}
 	\draw (7,15) node[font=\LARGE\sffamily] {French version} ;
 \end{EnvScrabble}\\
-\begin{EnvScrabble}<GE>[Scale=0.55]
-	\ScrabblePutWord{T,I,K,Z}{1,13}
-	\ScrabblePutWord[V]{P,S,T,R,I,C,K,S}{1,15}
+\begin{EnvScrabble}<DE>[Scale=0.55]
+	\ScrabblePutWord{tikz}{1,13} \ScrabblePutWord[V]{PSTRiCKS}{1,15}
 	\draw (7,15) node[font=\LARGE\sffamily] {German version} ;
 \end{EnvScrabble}~~~
-\begin{EnvScrabble}<SP>[Scale=0.55]
-	\ScrabblePutWord{L,A,T,E,X}{1,14}
-	\ScrabblePutWord[V]{M,A,D,R,I,D}{2,15}
+\begin{EnvScrabble}<ES>[Scale=0.55]
+	\ScrabblePutWord{LaTeX}{1,14} \ScrabblePutWord[V]{Madrid}{2,15}
 	\draw (7,15) node[font=\LARGE\sffamily] {Spanish vesion} ;
 \end{EnvScrabble}
 \end{PresentationCode}
+
+\newpage
+
+\part*{History}
+
+\verb|v0.1.3|~:~~~~Words in uppercase or lowercase, adjusted codes for language (ISO 639-1)
+
+\verb|v0.1.2|~:~~~~Key \textsf{<ScaleLabels>} to modify scale of the cell's names
+
+\verb|v0.1  |~:~~~~Initial version
 
 \end{document}

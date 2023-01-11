@@ -6,11 +6,11 @@
 \usepackage[french]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[fr]{Scrabble}
+\usepackage{Scrabble}
 %\usepackage[upright]{fourier}
 %\usepackage[scaled=0.875]{helvet}
 %\renewcommand\ttdefault{lmtt}
-%\usepackage[scaled=0.875]{cabin}
+%\usepackage{cabin}
 \usepackage{amsmath,amssymb}
 \usepackage{fontawesome5}
 \usepackage{enumitem}
@@ -31,8 +31,8 @@
 \setlength{\parindent}{0pt}
 \definecolor{LightGray}{gray}{0.9}
 
-\def\TPversion{0.1.2}
-\def\TPdate{7 Janvier 2023}
+\def\TPversion{0.1.3}
+\def\TPdate{9 Janvier 2023}
 
 \usepackage[most]{tcolorbox}
 \tcbuselibrary{minted}
@@ -107,25 +107,27 @@
 \vspace{0.5cm}
 
 \begin{center}
-	\PlateauScrabble[Echelle=0.5]
+	\PlateauScrabble[Echelle=0.4]
 	~~~~
-	\begin{EnvScrabble}[Echelle=0.5]
-		\ScrabblePlaceMot{T,I,K,Z}{1,13}
-		\ScrabblePlaceMot[V]{P,S,T,R,I,C,K,S}{1,15}
-		\ScrabblePlaceMot[V]{K,A,T,E,X}{3,13}
-		\ScrabblePlaceMot{C,L,E,V,E,R,E,F}{1,10}
-		\ScrabblePlaceMot[V]{M,E,T,A,P,O,S,T}{7,11}
-		\ScrabblePlaceMot{L,U,A,L,A,T,E,X}{5,8}
-		\ScrabblePlaceMot[V]{P,R,O,F,L,Y,*,E,E}{11,15}
-		\ScrabblePlaceMot{P,R,O,F,C,O,L,L,E,*,E}{1,1}
-		\ScrabblePlaceMot{S,Y,N,T,A,X,E}{7,5}
-		\ScrabblePlaceMot[V]{S,T,R,I,N,*}{10,6}
-	\end{EnvScrabble}
+	\begin{EnvScrabbleFR}[Echelle=0.4]
+		\ScrabblePlaceMot{TIKZ}{1,13}
+		\ScrabblePlaceMot[V]{pstricks}{1,15}
+		\ScrabblePlaceMot[V]{KaTeX}{3,13}
+		\ScrabblePlaceMot{cleveref}{1,10}
+		\ScrabblePlaceMot[V]{METAPOST}{7,11}
+		\ScrabblePlaceMot{LUALATEX}{5,8}
+		\ScrabblePlaceMot[V]{ProfLy*ee}{11,15}
+		\ScrabblePlaceMot{PROFCOLLE*E}{1,1}
+		\ScrabblePlaceMot{SYNTAXE}{7,5}
+		\ScrabblePlaceMot[V]{STRIN*}{10,6}
+	\end{EnvScrabbleFR}
 \end{center}
 
 \vspace{0.5cm}
 
-\hfill{}\textit{Merci aux membres du groupe \faFacebook{} du \og Coin \LaTeX{} \fg{} pour leur aide et leurs idées !}
+%\hfill{}\textit{Merci aux membres du groupe \faFacebook{} du \og Coin \LaTeX{} \fg{} pour leur aide et leurs idées !}
+
+\hfill{}\textit{Merci à Denis Bitouzé et à Patrick Bideault pour leurs retours et idées !}
 
 \vfill
 
@@ -150,14 +152,6 @@
 
 \newpage
 
-\part*{Historique}
-
-\verb|v0.1.2|~:~~~~Clé \textsf{<EchelleLabels>} pour modifier l'échelle des noms des cases
-
-\verb|v0.1.1|~:~~~~Option \textsf{[fr]} pour franciser les commandes
-
-\verb|v0.1  |~:~~~~Version initiale
-
 \part*{Introduction}
 
 \section{Le package Scrabble}
@@ -175,7 +169,7 @@ Le package a ensuite été \textit{construit} et \textit{modestement enrichi} au
 Le package \textsf{Scrabble} se charge dans le préambule via la commande :
 
 \begin{PresentationCode}{listing only}
-\usepackage[fr]{Scrabble}
+\usepackage{Scrabble}
 \end{PresentationCode}
 
 Il est compatible avec les compilations usuelles en \textsf{latex}, \textsf{pdflatex}, \textsf{lualatex} ou \textsf{xelatex}.
@@ -187,7 +181,7 @@ Il charge les packages et librairies suivantes :
 \begin{itemize}
 	\item \texttt{tikz} avec les librairies \Cle{calc} et \Cle{shapes.geometric} ;
 	\item \texttt{pgf} et \texttt{pgffor} ;
-	\item \texttt{xstring}, \texttt{xparse} et \texttt{simplekv}.
+	\item \texttt{xstring}, \texttt{xparse}, \texttt{simplekv} et \texttt{listofitems}.
 \end{itemize}
 
 \subsection{\og Philosophie \fg{} du package}
@@ -203,21 +197,22 @@ L'idée est de proposer, grâce à des commandes en \TikZ, des \textsf{commandes
 %commande autonome pour afficher le plateau (vide)
 \PlateauScrabble<langue>[clés]
 
-%environnement avec mot(s)
-\begin{EnvScrabble}<langue>[clés]
-	\ScrabblePlaceMot[orientation]{l,e,t,t,r,e,s,}{coordonnées de la case de départ}
-\end{EnvScrabble}
+%environnement francisé, avec clés en français, avec mot(s)
+\begin{EnvScrabbleFR}<langue>[clés]
+	\ScrabblePlaceMot[orientation]{mot}{coordonnées de la case de départ}
+	\ScrabblePlaceMot[orientation]{mot}{coordonnées de la case de départ}
+\end{EnvScrabbleFR}
 \end{PresentationCode}
 
 \subsection{Langues}
 
-Les \textsf{commandes}, \textsf{environnements} et \textsf{clés} proposées le sont en version \textsf{française}, mais les cases et points peuvent être affichées en :
+Les \textsf{commandes}, \textsf{environnements} et \textsf{clés} proposées le sont en version \textsf{française} (et \textsf{anglaise}, voir fin de la doc), et les cases et points peuvent être affichées en :
 
 \begin{itemize}
-	\item français ;
-	\item anglais ;
-	\item allemand ;
-	\item espagnol.
+	\item français (code ISO 639-1 FR) ;
+	\item anglais (code ISO 639-1 EN) ;
+	\item allemand (code ISO 639-1 DE) ;
+	\item espagnol (code ISO 639-1 ES).
 \end{itemize}
 
 \pagebreak
@@ -244,7 +239,7 @@ Le second argument, \textit{optionnel}, entre \texttt{[...]} propose les \Cle{cl
 
 \begin{PresentationCode}{}
 \PlateauScrabble[Labels=false,Echelle=0.55]\\     %plateau sans le nom des cases
-\PlateauScrabble<EN>[Echelle=0.55,Cadre=false]    %plateau en anglais
+\PlateauScrabble<EN>[Echelle=0.55,Cadre=false]    %plateau en anglais, sans cadre
 \end{PresentationCode}
 
 \newpage
@@ -263,7 +258,7 @@ Pour le placement des mots :
 
 \begin{itemize}
 	\item le premier argument, \textit{optionnel}, entre \texttt{[...]} est l'orientation du mot, à choisir entre \Cle{H} (par défaut) et \Cle{V} (en fait toute autre lettre que \Cle{H} !) ;
-	\item le deuxième argument, \textit{mandataire}, entre \texttt{\{...\}}, est la liste des lettres à placer, séparées par des \og \texttt{,} \fg{} ;
+	\item le deuxième argument, \textit{mandataire}, entre \texttt{\{...\}}, est le mot à placer, en majuscules ou minuscules ;
 	\item le dernier argument, \textit{mandataire}, entre \texttt{\{...\}}, correspond aux coordonnées de la case sur laquelle sera placée le début du mot (la case (1;\,1) étant la case au bord Bas/Gauche).
 \end{itemize}
 
@@ -274,41 +269,68 @@ Pour le placement des mots :
 \textbf{Remarque 2 :} le \textit{blanc} (ou \textit{joker}) est obtenu par la lettre \texttt{*}.
 
 \begin{PresentationCode}{}
-\begin{EnvScrabble}[Echelle=0.75,Labels=false,Aide]
-	\ScrabblePlaceMot{T,I,K,Z}{1,13}
-	\ScrabblePlaceMot[V]{P,S,T,R,I,C,K,S}{1,15}
-	\ScrabblePlaceMot[V]{K,A,T,E,X}{3,13}
-	\ScrabblePlaceMot{C,L,E,V,E,R,E,F}{1,10}
-	\ScrabblePlaceMot[V]{M,E,T,A,P,O,S,T}{7,11}
-	\ScrabblePlaceMot{L,U,A,L,A,T,E,X}{5,8}
-	\ScrabblePlaceMot[V]{P,R,O,F,L,Y,*,E,E}{11,15}
-	\ScrabblePlaceMot{P,R,O,F,C,O,L,L,E,*,E}{1,1}
-	\ScrabblePlaceMot{S,Y,N,T,A,X,E}{7,5}
-	\ScrabblePlaceMot[V]{S,T,R,I,N,*}{10,6}
-\end{EnvScrabble}
+\begin{EnvScrabbleFR}[Echelle=0.75,Labels=false,Aide]
+	\ScrabblePlaceMot{TIKZ}{1,13}
+	\ScrabblePlaceMot[V]{pstricks}{1,15}
+	\ScrabblePlaceMot[V]{KaTeX}{3,13}
+	\ScrabblePlaceMot{cleveref}{1,10}
+	\ScrabblePlaceMot[V]{METAPOST}{7,11}
+	\ScrabblePlaceMot{LUALATEX}{5,8}
+	\ScrabblePlaceMot[V]{ProfLy*ee}{11,15}
+	\ScrabblePlaceMot{PROFCOLLE*E}{1,1}
+	\ScrabblePlaceMot{SYNTAXE}{7,5}
+	\ScrabblePlaceMot[V]{STRIN*}{10,6}
+\end{EnvScrabbleFR}
 \end{PresentationCode}
 
 \begin{PresentationCode}{}
-\begin{EnvScrabble}<FR>[Echelle=0.55]
-	\ScrabblePlaceMot{T,I,K,Z}{1,13}
-	\ScrabblePlaceMot[V]{P,S,T,R,I,C,K,S}{1,15}
+\begin{EnvScrabbleFR}<FR>[Echelle=0.55]
+	\ScrabblePlaceMot{TIKZ}{1,13}  \ScrabblePlaceMot[V]{pstricks}{1,15}
 	\draw (7,15) node[font=\LARGE\sffamily] {Version française} ; %code rajouté
-\end{EnvScrabble}~~~
-\begin{EnvScrabble}<EN>[Echelle=0.55]
-	\ScrabblePlaceMot{T,I,K,Z}{1,13}
-	\ScrabblePlaceMot[V]{P,S,T,R,I,C,K,S}{1,15}
+\end{EnvScrabbleFR}~~~
+\begin{EnvScrabbleFR}<EN>[Echelle=0.55]
+	\ScrabblePlaceMot{TIKZ}{1,13} \ScrabblePlaceMot[V]{pstricks}{1,15}
 	\draw (7,15) node[font=\LARGE\sffamily] {Version anglaise} ; %code rajouté
-\end{EnvScrabble}\\
-\begin{EnvScrabble}<DE>[Echelle=0.55]
-	\ScrabblePlaceMot{T,I,K,Z}{1,13}
-	\ScrabblePlaceMot[V]{P,S,T,R,I,C,K,S}{1,15}
+\end{EnvScrabbleFR}\\
+\begin{EnvScrabbleFR}<DE>[Echelle=0.55]
+	\ScrabblePlaceMot{TIKZ}{1,13} \ScrabblePlaceMot[V]{pstricks}{1,15}
 	\draw (7,15) node[font=\LARGE\sffamily] {Version allemande} ; %code rajouté
+\end{EnvScrabbleFR}~~~
+\begin{EnvScrabbleFR}<ES>[Echelle=0.55]
+	\ScrabblePlaceMot{TIKZ}{1,13} \ScrabblePlaceMot[V]{pstricks}{1,15}
+	\draw (7,15) node[font=\LARGE\sffamily] {Version espagnole} ; %code rajouté
+\end{EnvScrabbleFR}
+\end{PresentationCode}
+
+\newpage
+
+\subsection{Commandes anglaises}
+
+Le package ayant potentiellement une portée \textit{internationale}, les commandes existent également en version \textit{anglaise}. Dans ce cas, les \Cle{clés} sont également à donner en anglais.
+
+\begin{PresentationCode}{}
+\ScrabbleBoard[Scale=0.5] \ScrabbleBoard[Labels=false,Scale=0.5]
+\end{PresentationCode}
+
+\begin{PresentationCode}{}
+\begin{EnvScrabble}[Scale=0.5]
+	\ScrabblePutWord{TIKZ}{1,13}  \ScrabblePutWord[V]{pstricks}{1,15}
+	\draw (7,15) node[font=\LARGE\sffamily] {Version anglaise} ; %code rajouté
 \end{EnvScrabble}~~~
-\begin{EnvScrabble}<ES>[Echelle=0.55]
-	\ScrabblePlaceMot{L,A,T,E,X}{1,14}
-	\ScrabblePlaceMot[V]{M,A,D,R,I,D}{2,15}
+\begin{EnvScrabble}<ES>[Scale=0.5]
+	\ScrabblePutWord{TIKZ}{1,13} \ScrabblePutWord[V]{pstricks}{1,15}
 	\draw (7,15) node[font=\LARGE\sffamily] {Version espagnole} ; %code rajouté
 \end{EnvScrabble}
 \end{PresentationCode}
+
+\newpage
+
+\part*{Historique}
+
+\verb|v0.1.3|~:~~~~Meilleure gestion de la saisie des mots (sans virgule, majuscule ou minuscule)
+
+\verb|v0.1.2|~:~~~~Clé \textsf{<EchelleLabels>} pour modifier l'échelle des noms des cases
+
+\verb|v0.1  |~:~~~~Version initiale
 
 \end{document}
