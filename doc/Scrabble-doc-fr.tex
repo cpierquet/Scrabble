@@ -23,7 +23,24 @@
 \cfoot{\sffamily\small - \thepage{} -}
 \rfoot{\hyperlink{matoc}{\small\faArrowAltCircleUp[regular]}}
 
-\usepackage{hvlogos}
+%\usepackage{hvlogos}
+\usepackage{hologo}
+\providecommand\tikzlogo{Ti\textit{k}Z}
+\providecommand\TeXLive{\TeX{}Live\xspace}
+\providecommand\PSTricks{\textsf{PSTricks}\xspace}
+\let\pstricks\PSTricks
+\let\TikZ\tikzlogo
+\newcommand\TableauDocumentation{%
+	\begin{tblr}{width=\linewidth,colspec={X[c]X[c]X[c]X[c]X[c]X[c]},cells={font=\sffamily}}
+		{\huge \LaTeX} & & & & &\\
+		& {\huge \hologo{pdfLaTeX}} & & & & \\
+		& & {\huge \hologo{LuaLaTeX}} & & & \\
+		& & & {\huge \TikZ} & & \\
+		& & & & {\huge \TeXLive} & \\
+		& & & & & {\huge \hologo{MiKTeX}} \\
+	\end{tblr}
+}
+
 \usepackage{hyperref}
 \urlstyle{same}
 \hypersetup{pdfborder=0 0 0}
@@ -104,12 +121,12 @@
 
 {$\blacktriangleright$~~Idée(s) venant de \url{https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders}}
 
-\vspace{0.5cm}
+\vspace{0.15cm}
 
 \begin{center}
-	\PlateauScrabble[Echelle=0.4]
+	\PlateauScrabble[Echelle=0.5]
 	~~~~
-	\begin{EnvScrabbleFR}[Echelle=0.4]
+	\begin{EnvScrabbleFR}[Echelle=0.5]
 		\ScrabblePlaceMot{TIKZ}{1,13}
 		\ScrabblePlaceMot[V]{pstricks}{1,15}
 		\ScrabblePlaceMot[V]{KaTeX}{3,13}
@@ -135,14 +152,7 @@
 
 \medskip
 
-\begin{tblr}{width=\linewidth,colspec={X[c]X[c]X[c]X[c]X[c]X[c]},cells={font=\sffamily}}
-{\huge \LaTeX} & & & & &\\
-& {\huge \pdfLaTeX} & & & & \\
-& & {\huge \LuaLaTeX} & & & \\
-& & & {\huge \TikZ} & & \\
-& & & & {\huge \TeXLive} & \\
-& & & & & {\huge \MiKTeX} \\
-\end{tblr}
+\TableauDocumentation
 
 \medskip
 
