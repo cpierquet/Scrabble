@@ -46,8 +46,8 @@
 \setlength{\parindent}{0pt}
 \definecolor{LightGray}{gray}{0.9}
 
-\def\TPversion{0.1.3}
-\def\TPdate{09/01/2023}
+\def\TPversion{0.1.4}
+\def\TPdate{03/12/2023}
 
 \usepackage[most]{tcolorbox}
 \tcbuselibrary{minted}
@@ -309,7 +309,54 @@ For putting word on the board :
 
 \newpage
 
+\subsection{\textit{Inline} word}
+
+The idea is to propose a command to insert a word in \textit{online} mode, with automatic adjustment of size and position.
+
+\begin{PresentationCode}{listing only}
+%command to put inline word
+\ScrabbleWord[keys]{word}
+\end{PresentationCode}
+
+The first argument, \textit{optional}, between \texttt{[...]} allows you to configure the \Cle{keys}:
+
+\begin{itemize}
+	\item \Cle{Colback} for the color of the pieces ; \hfill~default: \Cle{yellow!40}
+	\item \Cle{Font} for the font ; \hfill~default: \Cle{\textbackslash bfseries\textbackslash sffamily}
+	\item \Cle{Colfonte} for the color of the characters ; \hfill~default: \Cle{black}
+	\item \Cle{Lang} to choose the language (for the number of points) ; \hfill~default: \Cle{EN}
+	\item \Cle{Offset} to specify horizontal spacing between pieces ; \hfill~default: \Cle{0.1pt}
+	\item \Cle{Scale} to specify a base scale for texts ; \hfill~default: \Cle{0.6}
+	\item \Cle{Score} which is a boolean to display the score of each piece. \hfill~default: \Cle{true}
+\end{itemize}
+
+\textbf{Note 1 :} the code is responsible for positioning the pieces for \textit{satisfactory} alignment and scaling based on the active font.
+
+\smallskip
+
+\textbf{Note 2 :} the \textit{blank} (or \textit{wildcard}) is obtained by the character \texttt{*}.
+
+\begin{PresentationCode}{}
+Online Scrabble word test positioning \ScrabbleWord{TE*ST} to see !
+\end{PresentationCode}
+
+\begin{PresentationCode}{}
+{\Huge\sffamily Test positioning \ScrabbleWord[Colback=teal!5,Colfonte=orange]{PYTHAG*RE} to see !}
+\end{PresentationCode}
+
+\begin{PresentationCode}{}
+\scalebox{3}[3]{Positioning \ScrabbleWord[Lang=DE,Font=\ttfamily,Scale=0.75]{PYTHAG*RE} to see !}
+\end{PresentationCode}
+
+\begin{PresentationCode}{}
+{\LARGE Test positioning \ScrabbleWord[Score=false,Offset=1pt,Colback=orange!50]{PSTRICKS} to see !}
+\end{PresentationCode}
+
+\newpage
+
 \part*{History}
+
+\verb|v0.1.4|~:~~~~Command to insert \textit{inline} words
 
 \verb|v0.1.3|~:~~~~Words in uppercase or lowercase, adjusted codes for language (ISO 639-1)
 

@@ -4,7 +4,8 @@
 % Inspiration                    : Mark Wibrow in https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{Scrabble}[2023/01/09 v0.1.3 Scrabble]
+\ProvidesPackage{Scrabble}[2023/12/03 0.1.4 Scrabble]
+% 0.1.4		Ajout d'un mode inline
 % 0.1.3		Refonte des commandes fr/en + gestion mot
 % 0.1.2		Clé <EchelleLabels> pour les labels des cases
 % 0.1.1		Commandes en/fr
@@ -17,6 +18,7 @@
 \RequirePackage{xparse}
 \RequirePackage{simplekv}
 \RequirePackage{listofitems}
+\RequirePackage{calc}
 %librairies tikz
 \usetikzlibrary{calc,shapes.geometric}
 
@@ -311,5 +313,105 @@
 {%
 	\end{tikzpicture}%
 }
+
+%place mot inline
+\newlength{\tmp@scrabword@total@height}
+\newlength{\tmp@scrabword@depth}
+
+\defKV[SCRABBLEWORDINLINEFR]{%
+	CouleurFond=\def\ScrWordInlColFond{#1},%
+	Police=\def\ScrWordInlFonte{#1},%
+	CouleurPolice=\def\ScrWordInlColFonte{#1},%
+	Langue=\def\ScrWordInlLang{#1},%
+	Offset=\def\ScrWordInlOffset{#1},%
+	Echelle=\def\ScrWordInlScale{#1}
+}
+
+\setKVdefault[SCRABBLEWORDINLINEFR]{%
+	CouleurFond=yellow!40,%
+	Police=\bfseries\sffamily,%
+	CouleurPolice=black,%
+	Langue=FR,%
+	Offset=0.1pt,%
+	Score=true,%
+	Echelle=0.6
+}
+
+\NewDocumentCommand\MotScrabble{ O{} m }{%
+	\useKVdefault[SCRABBLEWORDINLINEFR]%
+	\setKV[SCRABBLEWORDINLINEFR]{#1}%
+	\settototalheight{\tmp@scrabword@total@height}{\hbox{ABCDEFGHIJKLMNOPQQRSTUVWXYZabcdefghijklmnopqqrstuvwxyz}}%
+	\settodepth{\tmp@scrabword@depth}{\hbox{q}}%
+	\StrLen{#2}[\lgmot]%
+	\raisebox{-\tmp@scrabword@depth+0.025\tmp@scrabword@total@height}{%
+		\foreach \l in {1,2,...,\lgmot}%
+			{%
+				\StrChar{#2}{\l}[\ll]%
+				\IfStrEq{\ll}{*}%
+					{%
+						{\tikz \filldraw[\ScrWordInlColFond,rounded corners={0.15\tmp@scrabword@total@height}] (0,0) rectangle++ ({0.9\tmp@scrabword@total@height},{0.9\tmp@scrabword@total@height}) ;}%
+					}%
+					{%
+						{\tikz {%
+							\filldraw[\ScrWordInlColFond,rounded corners={0.15\tmp@scrabword@total@height}] (0,0) rectangle++ ({0.9\tmp@scrabword@total@height},{0.9\tmp@scrabword@total@height}) node[inner sep=0pt,midway,font=\ScrWordInlFonte,scale=\ScrWordInlScale,text=\ScrWordInlColFonte] {\expandafter\MakeUppercase\expandafter{\ll}};%
+							\ifboolKV[SCRABBLEWORDINLINEFR]{Score}%
+								{\draw ({0.9\tmp@scrabword@total@height},0) node[inner sep=0pt,above left={0.075\tmp@scrabword@total@height},font=\ScrWordInlFonte,scale={0.25*\ScrWordInlScale},text=\ScrWordInlColFonte] { \scrabblescorelettre[\ScrWordInlLang]{\ll} } ;}
+								{}%
+							}%
+						}%
+					}%
+			\ifnum \l<\lgmot\hspace*{\ScrWordInlOffset}\fi%
+			}%
+	}%
+}
+
+\defKV[SCRABBLEWORDINLINEEN]{%
+	Colback=\def\ScrWordInlColFond{#1},%
+	Font=\def\ScrWordInlFonte{#1},%
+	Colfonte=\def\ScrWordInlColFonte{#1},%
+	Lang=\def\ScrWordInlLang{#1},%
+	Offset=\def\ScrWordInlOffset{#1},%
+	Scale=\def\ScrWordInlScale{#1}
+}
+
+\setKVdefault[SCRABBLEWORDINLINEEN]{%
+	Colback=yellow!40,%
+	Font=\bfseries\sffamily,%
+	Colfonte=black,%
+	Lang=EN,%
+	Offset=0.1pt,%
+	Score=true,%
+	Scale=0.6
+}
+
+\NewDocumentCommand\ScrabbleWord{ O{} m }{%
+	\useKVdefault[SCRABBLEWORDINLINEEN]%
+	\setKV[SCRABBLEWORDINLINEEN]{#1}%
+	\settototalheight{\tmp@scrabword@total@height}{\hbox{ABCDEFGHIJKLMNOPQQRSTUVWXYZabcdefghijklmnopqqrstuvwxyz}}%
+	\settodepth{\tmp@scrabword@depth}{\hbox{q}}%
+	\StrLen{#2}[\lgmot]%
+	\raisebox{-\tmp@scrabword@depth+0.025\tmp@scrabword@total@height}{%
+		\foreach \l in {1,2,...,\lgmot}%
+			{%
+				\StrChar{#2}{\l}[\ll]%
+				\IfStrEq{\ll}{*}%
+					{%
+						{\tikz \filldraw[\ScrWordInlColFond,rounded corners={0.15\tmp@scrabword@total@height}] (0,0) rectangle++ ({0.9\tmp@scrabword@total@height},{0.9\tmp@scrabword@total@height}) ;}%
+					}%
+					{%
+						{\tikz {%
+							\filldraw[\ScrWordInlColFond,rounded corners={0.15\tmp@scrabword@total@height}] (0,0) rectangle++ ({0.9\tmp@scrabword@total@height},{0.9\tmp@scrabword@total@height}) node[inner sep=0pt,midway,font=\ScrWordInlFonte,scale=\ScrWordInlScale,text=\ScrWordInlColFonte] {\expandafter\MakeUppercase\expandafter{\ll}};%
+							\ifboolKV[SCRABBLEWORDINLINEEN]{Score}%
+								{\draw ({0.9\tmp@scrabword@total@height},0) node[inner sep=0pt,above left={0.075\tmp@scrabword@total@height},font=\ScrWordInlFonte,scale={0.25*\ScrWordInlScale},text=\ScrWordInlColFonte] { \scrabblescorelettre[\ScrWordInlLang]{\ll} } ;}
+								{}%
+							}%
+						}%
+					}%
+			\ifnum \l<\lgmot\hspace*{\ScrWordInlOffset}\fi%
+			}%
+	}%
+}
+
+
 
 \endinput
