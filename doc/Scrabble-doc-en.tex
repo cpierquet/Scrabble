@@ -46,8 +46,8 @@
 \setlength{\parindent}{0pt}
 \definecolor{LightGray}{gray}{0.9}
 
-\def\TPversion{0.1.4}
-\def\TPdate{03/12/2023}
+\def\TPversion{0.1.5}
+\def\TPdate{23/01/2024}
 
 \usepackage[most]{tcolorbox}
 \tcbuselibrary{minted}
@@ -354,7 +354,31 @@ Online Scrabble word test positioning \ScrabbleWord{TE*ST} to see !
 
 \newpage
 
+\subsection{Special letters}
+
+It is possible to use special characters, for the languages \textsf{<DE>} and \textsf{<ES>}, but for compatibility reasons, special characters are \textit{coded} by numbers :
+
+\begin{itemize}
+	\item \texttt{0} code the letter \fbox{\"A} with 6 points ;
+	\item \texttt{1} code the letter \fbox{\"O} with 8 points ;
+	\item \texttt{4} code the letter \fbox{\"U} with 6 points ;
+	\item \texttt{6} code the \textit{letter} \fbox{CH} with 5 points ;
+	\item \texttt{7} code the letter \fbox{\~{N}} with 8 points ;
+	\item \texttt{8} code the \textit{letter} \fbox{RR} with 8 points ;
+	\item \texttt{9} code the \textit{letter} \fbox{LL} with 8 points.
+\end{itemize}
+
+\begin{PresentationCode}{}
+{\Huge \ScrabbleWord[Lang=DE,Font=\ttfamily,Scale=0.75]{104AAA}}
+
+{\Huge \ScrabbleWord[Lang=ES,Font=\sffamily,Scale=0.75]{RO7OSO}}
+\end{PresentationCode}
+
+\newpage
+
 \part*{History}
+
+\verb|v0.1.5|~:~~~~Special letters for \textsf{<DE>} and \textsf{<ES>}
 
 \verb|v0.1.4|~:~~~~Command to insert \textit{inline} words
 

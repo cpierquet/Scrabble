@@ -48,8 +48,8 @@
 \setlength{\parindent}{0pt}
 \definecolor{LightGray}{gray}{0.9}
 
-\def\TPversion{0.1.4}
-\def\TPdate{3 décembre 2023}
+\def\TPversion{0.1.5}
+\def\TPdate{23 janvier 2024}
 
 \usepackage[most]{tcolorbox}
 \tcbuselibrary{minted}
@@ -384,7 +384,31 @@ Le package ayant potentiellement une portée \textit{internationale}, les comman
 
 \newpage
 
+\subsection{Lettres spéciales}
+
+Il est possible d'utiliser des jetons spéciaux, pour les langues \textsf{<DE>} et \textsf{<ES>}, mais pour des raisons de compatibilité, les caractères spéciaux sont \textit{codés} par des chiffres :
+
+\begin{itemize}
+	\item \texttt{0} code la lettre \fbox{\"A} avec le score 6 ;
+	\item \texttt{1} code la lettre \fbox{\"O} avec le score 8 ;
+	\item \texttt{4} code la lettre \fbox{\"U} avec le score 6 ;
+	\item \texttt{6} code la \textit{lettre} \fbox{CH} avec le score 5 ;
+	\item \texttt{7} code la \textit{lettre} \fbox{\~{N}} avec le score 8 ;
+	\item \texttt{8} code la \textit{lettre} \fbox{RR} avec le score 8 ;
+	\item \texttt{9} code la \textit{lettre} \fbox{LL} avec le score 8.
+\end{itemize}
+
+\begin{PresentationCode}{}
+{\Huge \MotScrabble[Langue=DE,Police=\ttfamily,Echelle=0.75]{104AAA}}
+
+{\Huge \MotScrabble[Langue=ES,Police=\sffamily,Echelle=0.75]{RO7OSO}}
+\end{PresentationCode}
+
+\newpage
+
 \part*{Historique}
+
+\verb|v0.1.5|~:~~~~Ajout de lettres spéciales pour \textsf{<DE>} et \textsf{<ES>}
 
 \verb|v0.1.4|~:~~~~Ajout d'une commande pour placer en \textit{mot} en mode \og en ligne \fg
 
