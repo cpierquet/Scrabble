@@ -46,8 +46,8 @@
 \setlength{\parindent}{0pt}
 \definecolor{LightGray}{gray}{0.9}
 
-\def\TPversion{0.1.5}
-\def\TPdate{23/01/2024}
+\def\TPversion{0.1.6}
+\def\TPdate{26/01/2024}
 
 \usepackage[most]{tcolorbox}
 \tcbuselibrary{minted}
@@ -117,7 +117,7 @@
 
 \smallskip
 
-{$\blacktriangleright$~~Ideas from \url{https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders}}
+{$\blacktriangleright$~~Ideas from \scalebox{0.8}[1]{\ttfamily\url{ https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders}}}
 
 \vspace{0.15cm}
 
@@ -140,7 +140,7 @@
 
 \vspace{0.5cm}
 
-\hfill{}\textit{Thanks to Denis Bitouzé and Patrick Bideault for help and ideas !}
+\hfill{}\textit{Thanks to Denis Bitouzé, Patrick Bideault, quark67 and jmbeckers for help and ideas !}
 
 \vfill
 
@@ -164,7 +164,7 @@
 
 \subsection{Source}
 
-Some ideas are from \url{https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders}, with propostion from Mark Wibrow.
+Some ideas are from \scalebox{0.8}[1]{\ttfamily\url{ https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders}}, with proposition from Mark Wibrow.
 
 \smallskip
 
@@ -264,7 +264,7 @@ For putting word on the board :
 \begin{itemize}
 	\item the first argument, \textit{optional}, between \texttt{[...]} is the orientation of the word, \Cle{H} (by default) or \Cle{V} ;
 	\item the second argument, \textit{mandatory}, between \texttt{\{...\}}, is the word, with uppercase or lowercase letters ;
-	\item the last argument, \textit{mandatory}, between \texttt{\{...\}}, is the coordinates of the first cell for fisrt lettre (the cell (1;\,1) is south-west corner).
+	\item the last argument, \textit{mandatory}, between \texttt{\{...\}}, is the coordinates of the first cell for fisrt lettre (the cell \texttt{(1,1)} is south-west corner).
 \end{itemize}
 
 \textbf{Observation 1 :} the chosen language will display the right points in the til !
@@ -371,12 +371,14 @@ It is possible to use special characters, for the languages \textsf{<DE>} and \t
 \begin{PresentationCode}{}
 {\Huge \ScrabbleWord[Lang=DE,Font=\ttfamily,Scale=0.75]{104AAA}}
 
-{\Huge \ScrabbleWord[Lang=ES,Font=\sffamily,Scale=0.75]{RO7OSO}}
+{\Huge \ScrabbleWord[Lang=ES,Font=\sffamily,Scale=0.75]{RO7OSO689}}
 \end{PresentationCode}
 
 \newpage
 
 \part*{History}
+
+\verb|v0.1.6|~:~~~~Bugfix with \textit{joker} ; enhancements for \textsf{<DE>} board
 
 \verb|v0.1.5|~:~~~~Special letters for \textsf{<DE>} and \textsf{<ES>}
 

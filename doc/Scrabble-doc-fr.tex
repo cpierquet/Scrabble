@@ -48,8 +48,8 @@
 \setlength{\parindent}{0pt}
 \definecolor{LightGray}{gray}{0.9}
 
-\def\TPversion{0.1.5}
-\def\TPdate{23 janvier 2024}
+\def\TPversion{0.1.6}
+\def\TPdate{26 janvier 2024}
 
 \usepackage[most]{tcolorbox}
 \tcbuselibrary{minted}
@@ -123,7 +123,9 @@
 
 \smallskip
 
-{$\blacktriangleright$~~Idée(s) venant de \url{https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders}}
+{$\blacktriangleright$~~Idée(s) venant de \scalebox{0.8}[1]{\ttfamily\url{ https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders}}}
+%
+%{\centering \small \url{https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders}}
 
 \vspace{0.15cm}
 
@@ -148,7 +150,7 @@
 
 %\hfill{}\textit{Merci aux membres du groupe \faFacebook{} du \og Coin \LaTeX{} \fg{} pour leur aide et leurs idées !}
 
-\hfill{}\textit{Merci à Denis Bitouzé et à Patrick Bideault pour leurs retours et idées !}
+\hfill{}\textit{Merci à Denis Bitouzé, à Patrick Bideault, à quark67 et à jmbeckers pour leurs retours et idées !}
 
 \vfill
 
@@ -172,7 +174,7 @@
 
 \subsection{Source}
 
-Certaines idées viennent de \url{https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders}, avec une proposition de Mark Wibrow.
+Certaines idées viennent de \scalebox{0.75}[1]{\ttfamily\url{ https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders}}, avec une proposition de Mark Wibrow.
 
 \smallskip
 
@@ -273,7 +275,7 @@ Pour le placement des mots :
 \begin{itemize}
 	\item le premier argument, \textit{optionnel}, entre \texttt{[...]} est l'orientation du mot, à choisir entre \Cle{H} (par défaut) et \Cle{V} (en fait toute autre lettre que \Cle{H} !) ;
 	\item le deuxième argument, \textit{obligatoire}, entre \texttt{\{...\}}, est le mot à placer, en majuscules ou minuscules ;
-	\item le dernier argument, \textit{obligatoire}, entre \texttt{\{...\}}, correspond aux coordonnées de la case sur laquelle sera placée le début du mot (la case (1;\,1) étant la case au bord Bas/Gauche).
+	\item le dernier argument, \textit{obligatoire}, entre \texttt{\{...\}}, correspond aux coordonnées de la case sur laquelle sera placée le début du mot (la case \texttt{(1,1)} étant la case au bord Bas/Gauche).
 \end{itemize}
 
 \textbf{Remarque 1 :} la langue choisie permettra également d'avoir les jetons avec le \textit{bon} nombre de points !
@@ -311,7 +313,7 @@ Pour le placement des mots :
 	\draw (7,15) node[font=\LARGE\sffamily] {Version allemande} ; %code rajouté
 \end{EnvScrabbleFR}~~~
 \begin{EnvScrabbleFR}<ES>[Echelle=0.55]
-	\ScrabblePlaceMot{TIKZ}{1,13} \ScrabblePlaceMot[V]{pstricks}{1,15}
+	\ScrabblePlaceMot{RO7OSO}{1,12} \ScrabblePlaceMot[V]{pstricks}{1,15}
 	\draw (7,15) node[font=\LARGE\sffamily] {Version espagnole} ; %code rajouté
 \end{EnvScrabbleFR}
 \end{PresentationCode}
@@ -401,12 +403,14 @@ Il est possible d'utiliser des jetons spéciaux, pour les langues \textsf{<DE>} 
 \begin{PresentationCode}{}
 {\Huge \MotScrabble[Langue=DE,Police=\ttfamily,Echelle=0.75]{104AAA}}
 
-{\Huge \MotScrabble[Langue=ES,Police=\sffamily,Echelle=0.75]{RO7OSO}}
+{\Huge \MotScrabble[Langue=ES,Police=\sffamily,Echelle=0.75]{RO7OSO689}}
 \end{PresentationCode}
 
 \newpage
 
 \part*{Historique}
+
+\verb|v0.1.6|~:~~~~Correction d'un bug avec les jokers ; améliorations du plateau \textsf{<DE>}
 
 \verb|v0.1.5|~:~~~~Ajout de lettres spéciales pour \textsf{<DE>} et \textsf{<ES>}
 
