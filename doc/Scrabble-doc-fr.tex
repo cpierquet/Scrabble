@@ -22,7 +22,7 @@
 \lfoot{\sffamily\small [Scrabble]}
 \cfoot{\sffamily\small - \thepage{} -}
 \rfoot{\hyperlink{matoc}{\small\faArrowAltCircleUp[regular]}}
-
+\usepackage{microtype}
 %\usepackage{hvlogos}
 \usepackage{hologo}
 \providecommand\tikzlogo{Ti\textit{k}Z}
@@ -40,7 +40,7 @@
 		& & & & & {\huge \hologo{MiKTeX}} \\
 	\end{tblr}
 }
-
+\usepackage[hyphens]{url}
 \usepackage{hyperref}
 \urlstyle{same}
 \hypersetup{pdfborder=0 0 0}
@@ -115,7 +115,7 @@
 
 \smallskip
 
-{$\blacktriangleright$~~Possibilité de mettre le plateau et les points pour les versions Française, Anglaise, Allemande et Espagnole.}
+{$\blacktriangleright$~~Possibilité de mettre le plateau et les points pour les versions française, anglaise, allemande et espagnole.}
 
 \smallskip
 
@@ -172,7 +172,7 @@
 
 \subsection{Source}
 
-Certaines idées viennent de \url{https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders}, avec une proposition de Mark Wibrow.
+Certaines idées viennent de la page \url{https://tex.stackexchange.com/questions/194780/tikz-drawing-a-rectangle-with-spikes-on-borders}, avec une proposition de Mark Wibrow.
 
 \smallskip
 
@@ -273,7 +273,7 @@ Pour le placement des mots :
 \begin{itemize}
 	\item le premier argument, \textit{optionnel}, entre \texttt{[...]} est l'orientation du mot, à choisir entre \Cle{H} (par défaut) et \Cle{V} (en fait toute autre lettre que \Cle{H} !) ;
 	\item le deuxième argument, \textit{obligatoire}, entre \texttt{\{...\}}, est le mot à placer, en majuscules ou minuscules ;
-	\item le dernier argument, \textit{obligatoire}, entre \texttt{\{...\}}, correspond aux coordonnées de la case sur laquelle sera placée le début du mot (la case (1;\,1) étant la case au bord Bas/Gauche).
+	\item le dernier argument, \textit{obligatoire}, entre \texttt{\{...\}}, correspond aux coordonnées de la case sur laquelle sera placée le début du mot (la case (1\,,\,1) étant la case au bord Bas/Gauche).
 \end{itemize}
 
 \textbf{Remarque 1 :} la langue choisie permettra également d'avoir les jetons avec le \textit{bon} nombre de points !
